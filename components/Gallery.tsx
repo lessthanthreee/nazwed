@@ -1,12 +1,9 @@
 import React from 'react';
 
 const photos = [
-  "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop", // Celebration
-  "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=800&auto=format&fit=crop", // Couple holding hands
-  "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop", // Rings
-  "https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800&auto=format&fit=crop", // Decor
-  "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=800&auto=format&fit=crop", // Toast
-  "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop", // Happiness
+  "https://raw.githubusercontent.com/lessthanthreee/nazwed/refs/heads/main/photo_2026-01-21_18-35-11.jpg",
+  "https://raw.githubusercontent.com/lessthanthreee/nazwed/refs/heads/main/photo_2026-01-21_18-35-32.jpg",
+  "https://raw.githubusercontent.com/lessthanthreee/nazwed/refs/heads/main/photo_2026-01-21_18-35-57.jpg",
 ];
 
 const Gallery: React.FC = () => {
@@ -25,6 +22,9 @@ const Gallery: React.FC = () => {
               src={url} 
               alt={`Gallery ${i}`}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=800&auto=format&fit=crop';
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-k-teal-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>

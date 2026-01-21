@@ -90,9 +90,13 @@ function App() {
             {/* Top Half: Image */}
             <div className="relative aspect-[4/5] overflow-hidden group">
                  <img 
-                  src="https://images.unsplash.com/photo-1623668864708-3a479d4df826?q=80&w=1000&auto=format&fit=crop" 
+                  src="https://raw.githubusercontent.com/lessthanthreee/nazwed/refs/heads/main/photo_2026-01-21_18-34-19.jpg" 
                   alt="Wedding Couple" 
                   className="w-full h-full object-cover transition-transform duration-[3s] ease-in-out group-hover:scale-105"
+                  onError={(e) => {
+                    // Fallback in case the raw link fails
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=800&auto=format&fit=crop';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-k-teal-900/60 via-transparent to-transparent opacity-60"></div>
                 
@@ -101,7 +105,7 @@ function App() {
                 
                 {/* Floating Badge on Image */}
                 <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-md border border-white/40 px-4 py-2 rounded-full">
-                  <span className="text-[10px] uppercase tracking-widest text-white font-bold">31.01.2025</span>
+                  <span className="text-[10px] uppercase tracking-widest text-white font-bold">31.01.2026</span>
                 </div>
             </div>
             
@@ -114,7 +118,7 @@ function App() {
 
               <div className="mt-6 space-y-6">
                  <div>
-                    <h2 className="font-script text-4xl text-k-teal-900 mb-2">Құрметті қонақтар!</h2>
+                    <h2 className="font-serif text-4xl text-k-teal-900 mb-2 font-medium">Құрметті қонақтар!</h2>
                     <p className="font-serif text-lg text-stone-600 leading-relaxed italic">
                       Сіз(дер)ді балаларымыздың үйлену тойының қадірлі қонағы болуға шақырамыз.
                     </p>

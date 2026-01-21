@@ -8,8 +8,9 @@ interface TimeLeft {
 }
 
 const CountdownTimer: React.FC = () => {
-  // Target: Jan 31, 2025 at 18:00
-  const targetDate = new Date('2025-01-31T18:00:00').getTime();
+  // Target: Jan 31, 2026 at 18:00
+  // Note: Month is 0-indexed (0 = January)
+  const targetDate = new Date(2026, 0, 31, 18, 0, 0).getTime();
 
   const calculateTimeLeft = (): TimeLeft => {
     const now = new Date().getTime();

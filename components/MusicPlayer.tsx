@@ -1,9 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PlayIcon, PauseIcon } from './Icons';
 
 const MusicPlayer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [bars, setBars] = useState<number[]>(new Array(16).fill(6));
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Acoustic guitar cover by nurastro
+  const audioUrl = "https://github.com/lessthanthreee/nazwed/raw/refs/heads/main/Сен%20Үшін%20Жаралғандаймын%20_%20Acoustic%20guitar%20cover%20by%20nurastro..mp3";
+
+  useEffect(() => {
+    audioRef.current = new Audio(audioUrl);
+    audioRef.current.loop = true;
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play().catch(e => console.error("Playback failed", e));
+      setIsPlaying(true);
+    }
+  };
 
   useEffect(() => {
     let interval: number;
@@ -20,7 +48,7 @@ const MusicPlayer: React.FC = () => {
   return (
     <div className="mx-6 mt-8 p-4 rounded-full glass-panel flex items-center gap-4 transition-all duration-300 border-k-gold-200/50">
       <button 
-        onClick={() => setIsPlaying(!isPlaying)}
+        onClick={togglePlay}
         className="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-k-teal-700 to-k-teal-900 rounded-full flex items-center justify-center text-k-gold-100 shadow-md shadow-k-teal-900/20 hover:scale-105 transition-transform active:scale-95 border border-k-gold-500/30"
       >
         {isPlaying ? <PauseIcon className="w-5 h-5" /> : <PlayIcon className="w-5 h-5 ml-1" />}
@@ -28,10 +56,10 @@ const MusicPlayer: React.FC = () => {
       
       <div className="flex flex-col flex-1 overflow-hidden">
         <span className="text-[10px] text-k-teal-800/70 uppercase tracking-widest font-bold mb-0.5">
-          {isPlaying ? 'Now Playing' : 'Paused'}
+          {isPlaying ? 'Қосулы' : 'Кідіртілді'}
         </span>
         <span className="text-sm font-serif font-medium text-k-teal-950 truncate">
-          Адай Күйі - Заманауи өңдеу
+          Сен Үшін Жаралғандаймын
         </span>
       </div>
 
